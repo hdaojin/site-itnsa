@@ -1,4 +1,4 @@
-import os
+from configparser import ConfigParser
 
 from .base import *
 
@@ -18,5 +18,7 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = '/var/www/itnsa/static'
-MEDIA_ROOT = '/var/www/itnsa/media'
+config = ConfigParser()
+config.read('/etc/django/django.conf')
+STATIC_ROOT = config.get('DIR', 'STATIC_ROOT')
+MEDIA_ROOT = config.get('DIR', 'MEDIA_ROOT')
