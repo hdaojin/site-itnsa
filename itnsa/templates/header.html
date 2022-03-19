@@ -1,0 +1,62 @@
+{% url 'home:home' as home_url %}
+{% url 'home:about' as about_url %}
+{% url 'accounts:register' as register_url %}
+{% url 'accounts:login' as login_url %}
+{% url 'tlog:upload' as tlog_upload_url %}
+{% url 'tlog:list' as tlog_list_url %}
+
+
+<!-- 定义导航栏 -->
+<header class="container-fluid p-2 bg-dark text-white fixed-top">
+    <!-- <div class="container-lg"> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-5 ">
+        <div class="d-flex container-fluid">
+            <!-- 导航栏LOGO -->
+            <a class="navbar-brand" href="#">ITNSA</a>
+
+            <!-- 导航栏折叠按钮 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsiableNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 导航栏条目 -->
+            <div class="collapse navbar-collapse" id="collapsiableNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path_info == home_url %} active {% endif %}"
+                            aria-current="page" href="{{ home_url }}">首页</a>
+                    </li>
+
+                    <!-- 集训管理 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if request.path_info == tlog_upload_url or request.path_info == tlog_list_url %} active {% endif %}"
+                            data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">集训管理</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ tlog_upload_url }}">日志上传</a></li>
+                            <li><a class="dropdown-item" href="{{ tlog_list_url }}">日志列表</a></li>
+                            <li><a class="dropdown-item" href="#">考勤签到</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 关于 -->
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path_info == about_url %} active {% endif %}"
+                            href="{{ about_url }}">关于</a>
+                    </li>
+                </ul>
+
+                <!-- 搜索框 -->
+                <div class="navbar-nav">
+                    <form class="me-3">
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
+
+                    <!-- 注册登录 -->
+                    <a href="{{ login_url }}"><button type="button" class="btn btn-outline-light me-3">登录</button></a>
+                    <a href="{{ register_url }}"><button type="button" class="btn btn-warning">注册</button></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- </div> -->
+</header>

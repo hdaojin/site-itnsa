@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ITNSA">
+    <meta name="author" content="hdaojin">
+    <link rel="shortcut icon" href="{% static 'site/ico/favicon.ico' %}">
+
+    <title> {% if heading %}{{ heading }}{% endif %} | ITNSA </title>
+    
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" type="text/css">
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'site/css/style.css' %}" rel="stylesheet" type="text/css">
+
+    <!--[if lt IE 9]>
+            <script src="https://cdn.static.runoob.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <main style="margin-top:80px">
+        <div class="container-fluid">
+            <div class="pb-2 px-5">
+                <h1>{% block h1 %} {% if heading %}{{ heading }}{% endif %} {% endblock %}</h1>
+            </div>
+            <div class="py-3 px-5">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </main>
+    {% include 'footer.html' %}
+
+{% block javascript %}
+    <!-- some javascript -->
+{% endblock %}
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script> -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
