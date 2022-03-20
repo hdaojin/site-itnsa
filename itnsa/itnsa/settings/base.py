@@ -41,6 +41,7 @@ BUILD_IN_APPS = [
 
 PROJECT_APPS = [
     'home.apps.HomeConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 THIRDPARTY_APPS = [
@@ -108,6 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
