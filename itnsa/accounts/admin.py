@@ -1,6 +1,8 @@
+from html.entities import codepoint2name
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
+from django.contrib.auth.models import Permission
 from .models import User
 
 # Register your models here.
@@ -15,13 +17,15 @@ class MyUserAdmin(UserAdmin):
 
     def get_queryset(self, request):
         qs = super(MyUserAdmin, self).get_queryset(request)
-        if request.user.is_student:
+        if not request.user.is_superuser:
             return qs.filter(username=request.user)
         return qs
 
+      
+
 
 admin.site.register(User, MyUserAdmin)
-admin.site.unregister(Group)
+# admin.site.unregister(Group)
 # admin.site.register(Group, GroupAdmin)
 
 

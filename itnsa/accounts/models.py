@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import Permission
 from django.utils.translation import gettext_lazy as _
+
 
 # Create your models here.
 
@@ -12,7 +14,7 @@ class User(AbstractUser):
     is_competitor = models.BooleanField(default=False)
     is_staff = models.BooleanField(
         _("staff status"),
-        default=False,
+        default=True,
         help_text=_("Designates whether the user can log into this admin site."),
     )
 
@@ -20,4 +22,7 @@ class User(AbstractUser):
         pass
 
     def __str__(self):
+        if self.real_name:
+            return self.real_name
         return self.username
+
